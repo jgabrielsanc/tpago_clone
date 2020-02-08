@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hidden_drawer_menu/simple_hidden_drawer/bloc/simple_hidden_drawer_bloc.dart';
+import 'package:hidden_drawer_menu/simple_hidden_drawer/provider/simple_hidden_drawer_provider.dart';
 
 class RechargePage extends StatelessWidget {
-
-  final SimpleHiddenDrawerBloc controller;
-
-  RechargePage({this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Recargar', style: TextStyle(fontFamily: 'monospace', color: Colors.white.withOpacity(0.7),  fontSize: 20,),),
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {
-            controller.toggle();
-          }
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(45.0),
+        child: AppBar(
+          centerTitle: false,
+          elevation: 0,
+          title: Text('Recargar', style: TextStyle(fontFamily: 'monospace', color: Colors.white,  fontSize: 17,),),
+          leading: IconButton(
+            icon: Icon(Icons.list, size: 28,),
+            onPressed: () {
+              SimpleHiddenDrawerProvider.of(context).toggle();
+            }
+          ),
+          actions: <Widget>[
+            IconButton(
+              iconSize: 17,
+              icon: Icon(FontAwesomeIcons.ellipsisH),
+              onPressed: () {},
+            ),
+          ],
         ),
-        actions: <Widget>[
-          Container(
-            padding: EdgeInsets.only(right: 15),
-            child: Icon(FontAwesomeIcons.ellipsisH, size: 15,)
-          )
-        ],
       ),
       body: Column(
         children: <Widget>[
@@ -42,6 +44,9 @@ class RechargePage extends StatelessWidget {
           style: TextStyle(fontSize: 24),
           
           decoration: InputDecoration(
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey.withOpacity(0.6))
+            ),
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.grey.withOpacity(0.6))
             ),
